@@ -15,7 +15,7 @@ from langchain_google_genai import ChatGoogleGenerativeAI
 
 # custom tools
 from tools.fetch_qa_content import fetch_qa_content
-from tools.fetch_stores_by_prefecture import fetch_stores_by_prefecture
+#from tools.fetch_stores_by_prefecture import fetch_stores_by_prefecture
 
 # cache / feedback
 from src.cache import Cache
