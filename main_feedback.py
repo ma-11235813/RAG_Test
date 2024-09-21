@@ -22,12 +22,12 @@ from src.cache import Cache
 from src.feedback import add_feedback
 
 ###### dotenv を利用しない場合は消してください ######
-try:
-    from dotenv import load_dotenv
-    load_dotenv()
-except ImportError:
-    import warnings
-    warnings.warn("dotenv not found. Please make sure to set your environment variables manually.", ImportWarning)
+#try:
+#    from dotenv import load_dotenv
+#    load_dotenv()
+#except ImportError:
+#    import warnings
+#    warnings.warn("dotenv not found. Please make sure to set your environment variables manually.", ImportWarning)
 ################################################
 
 
@@ -66,7 +66,7 @@ def init_messages():
 
 
 def select_model():
-    models = ("GPT-4", "Claude 3.5 Sonnet", "Gemini 1.5 Pro", "GPT-3.5 (not recommended)")
+    models = ("GPT-4", "GPT-3.5 (not recommended)")
     model = st.sidebar.radio("Choose a model:", models)
     if model == "GPT-3.5 (not recommended)":
         return ChatOpenAI(
@@ -74,16 +74,10 @@ def select_model():
     elif model == "GPT-4":
         return ChatOpenAI(
             temperature=0, model_name="gpt-4o")
-    elif model == "Claude 3.5 Sonnet":
-        return ChatAnthropic(
-            temperature=0, model_name="claude-3-5-sonnet-20240620")
-    elif model == "Gemini 1.5 Pro":
-        return ChatGoogleGenerativeAI(
-            temperature=0, model="gemini-1.5-pro-latest")
 
 
 def create_agent():
-    tools = [fetch_qa_content, fetch_stores_by_prefecture]
+    tools = [fetch_qa_content]
     custom_system_prompt = load_system_prompt("./prompt/system_prompt.txt")
     prompt = ChatPromptTemplate.from_messages([
         ("system", custom_system_prompt),
@@ -112,7 +106,7 @@ def main():
     for msg in st.session_state['memory'].chat_memory.messages:
         st.chat_message(msg.type).write(msg.content)
 
-    if prompt := st.chat_input(placeholder="法人で契約することはできるの？"):
+    if prompt := st.chat_input(placeholder="XYZブランドの犬用オーガニックフードには、どんな栄養素が含まれていますか？"):
         st.chat_message("user").write(prompt)
 
         # 最初の質問の場合はキャッシュをチェックする
