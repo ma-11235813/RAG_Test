@@ -40,16 +40,16 @@ def load_system_prompt(file_path):
 def init_page():
     st.set_page_config(
         page_title="カスタマーサポート",
-        page_icon="🐻"
+        page_icon="🐶"
     )
-    st.header("カスタマーサポート🐻")
+    st.header("カスタマーサポート🐶")
     st.sidebar.title("Options")
 
 
 def init_messages():
     clear_button = st.sidebar.button("Clear Conversation", key="clear")
     if clear_button or "messages" not in st.session_state:
-        welcome_message = "ベアーモバイル カスタマーサポートへようこそ。ご質問をどうぞ🐻"
+        welcome_message = "高級ペット用品専門店ペットパラダイス カスタマーサポートへようこそ。ご質問をどうぞ🐶"
         st.session_state.messages = [
             {"role": "assistant", "content": welcome_message}
         ]
