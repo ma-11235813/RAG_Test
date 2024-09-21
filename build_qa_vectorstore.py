@@ -4,7 +4,7 @@
 import pandas as pd
 from langchain_openai import OpenAIEmbeddings
 from langchain_community.vectorstores import FAISS
-
+'''
 ###### dotenv を利用しない場合は消してください ######
 try:
     from dotenv import load_dotenv
@@ -13,10 +13,10 @@ except ImportError:
     import warnings
     warnings.warn("dotenv not found. Please make sure to set your environment variables manually.", ImportWarning)
 ################################################
-
+'''
 def main():
     # CSVファイルから「よくある質問」を読み込む
-    qa_df = pd.read_csv('./data/bearmobile_QA.csv')  # question,answer
+    qa_df = pd.read_csv('./data/pet_store_FAQ.csv')  # question,answer
 
     # ベクトルDBに書き込むデータを作る
     qa_texts = []
